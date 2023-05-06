@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">KotlinFreeToPlay</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string-array name="gameCategories">
+        <item>All</item>
+        <item>Mmorpg</item>
+        <item>Shooter</item>
+        <item>Moba</item>
+        <item>Anime</item>
+        <item>Battle Royale</item>
+        <item>Strategy</item>
+        <item>Fantasy</item>
+        <item>Sci-Fi</item>
+        <item>Card Games</item>
+        <item>Racing</item>
+        <item>Fighting</item>
+        <item>Social</item>
+        <item>Sports</item>
+    </string-array>
+</resources>
