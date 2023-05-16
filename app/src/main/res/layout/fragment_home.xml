@@ -4,17 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     tools:context=".ui.home.HomeFragment">
-
-    <ProgressBar
-        android:id="@+id/gameLoading"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:theme="@style/progressBarMediumDark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/gameError"
@@ -23,14 +14,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Errro" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <HorizontalScrollView
-        android:id="@+id/horizontalScrollView"
+        android:id="@+id/categoryScrollView"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:paddingHorizontal="6dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="6dp"
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,124 +29,116 @@
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/categoryChipGroup"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:selectionRequired="true"
             app:singleLine="true"
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/MMORPG"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:id="@+id/mmorpgChip"
+                style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MMORPG"
-                app:chipIconEnabled="true" />
+                android:text="MMORPG" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/Shooter"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:id="@+id/shooterChip"
+                style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Shooter" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/MOBA"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:id="@+id/mobaChip"
+                style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="MOBA" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/Anime"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:id="@+id/animeChip"
+                style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Anime" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/battleRoyale"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:id="@+id/battleRoyaleChip"
+                style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Battle-Royale" />
+                android:text="Battle Royale" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/Strategy"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:id="@+id/breadChip"
+                style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Strategy" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/Fantasy"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:id="@+id/fantasyChip"
+                style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fantasy" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/sciFi"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:id="@+id/sciFiChip"
+                style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sci-Fi" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/cardGames"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:id="@+id/cardGamesChip"
+                style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Card-Games" />
-
+                android:text="Card Games" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/racing"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:id="@+id/racingChip"
+                style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Racing" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/fighting"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:id="@+id/fightingChip"
+                style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fighting" />
 
-
             <com.google.android.material.chip.Chip
-                android:id="@+id/social"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:id="@+id/socialChip"
+                style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Social" />
 
-
             <com.google.android.material.chip.Chip
-                android:id="@+id/sports"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:id="@+id/sportsChip"
+                style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sports" />
         </com.google.android.material.chip.ChipGroup>
-
     </HorizontalScrollView>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/gameRecycler"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView"
+        app:layout_constraintTop_toBottomOf="@+id/categoryScrollView"
         tools:listitem="@layout/game_row_item" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

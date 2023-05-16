@@ -69,4 +69,8 @@ dependencies {
     kapt 'com.google.dagger:hilt-compiler:2.45'
 
     implementation("io.coil-kt:coil:2.3.0")
+
+    implementation "com.github.skydoves:expandablelayout:1.0.7"
+    
+
 }

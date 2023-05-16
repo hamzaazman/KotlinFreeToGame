@@ -22,11 +22,8 @@ class HomeViewModel @Inject constructor(
     private val _gameList: MutableStateFlow<HomeUiState> = MutableStateFlow(HomeUiState.Loading)
     val gameList: StateFlow<HomeUiState> get() = _gameList.asStateFlow()
 
-    init {
-        getAllGame()
-    }
 
-    private fun getAllGame() = viewModelScope.launch {
+     fun getAllGame() = viewModelScope.launch {
         gameRepository.getAllGame().onEach { response ->
             when (response) {
                 is NetworkResource.Loading -> {

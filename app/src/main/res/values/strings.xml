@@ -4,7 +4,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string-array name="gameCategories">
-        <item>All</item>
         <item>Mmorpg</item>
         <item>Shooter</item>
         <item>Moba</item>
@@ -19,4 +18,19 @@
         <item>Social</item>
         <item>Sports</item>
     </string-array>
+    <string name="category_desc">
+        lorem ipsum dolor sit amet
+        lorem ipsum dolor sit amet
+        lorem ipsum dolor sit amet
+        lorem ipsum dolor sit amet
+        lorem ipsum dolor sit amet
+        lorem ipsum dolor sit amet
+        lorem ipsum dolor sit amet
+        lorem ipsum dolor sit amet
+        lorem ipsum dolor sit amet
+        lorem ipsum dolor sit amet
+        lorem ipsum dolor sit amet
+        lorem ipsum dolor sit amet
+        lorem ipsum dolor sit amet
+    </string>
 </resources>
