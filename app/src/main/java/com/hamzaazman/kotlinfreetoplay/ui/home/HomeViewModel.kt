@@ -3,12 +3,13 @@ package com.hamzaazman.kotlinfreetoplay.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hamzaazman.kotlinfreetoplay.common.NetworkResource
+import com.hamzaazman.kotlinfreetoplay.data.datastore.DataStoreRepositoryImpl
 import com.hamzaazman.kotlinfreetoplay.data.repository.GameRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -16,14 +17,21 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val gameRepository: GameRepositoryImpl
+    private val gameRepository: GameRepositoryImpl,
+    private val dataStoreRepository: DataStoreRepositoryImpl
 ) : ViewModel() {
 
     private val _gameList: MutableStateFlow<HomeUiState> = MutableStateFlow(HomeUiState.Loading)
     val gameList: StateFlow<HomeUiState> get() = _gameList.asStateFlow()
 
+    val getCategoryAndId = dataStoreRepository.getCategoryAndId
 
-     fun getAllGame() = viewModelScope.launch {
+    fun saveCategoryAndId(category: String, categoryId: Int) =
+        viewModelScope.launch(Dispatchers.IO) {
+            dataStoreRepository.saveCategoryAndId(category = category, categoryId = categoryId)
+        }
+
+    fun getAllGame() = viewModelScope.launch {
         gameRepository.getAllGame().onEach { response ->
             when (response) {
                 is NetworkResource.Loading -> {

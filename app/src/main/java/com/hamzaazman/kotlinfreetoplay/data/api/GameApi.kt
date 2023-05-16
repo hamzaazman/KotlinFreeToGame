@@ -6,8 +6,8 @@ import retrofit2.http.Query
 
 interface GameApi {
 
-    //@GET("api/games")
-    @GET("games.json")
+    @GET("api/games")
+    //@GET("games.json")
     suspend fun getAllGame(): List<GameDto>
 
     @GET("api/games/")

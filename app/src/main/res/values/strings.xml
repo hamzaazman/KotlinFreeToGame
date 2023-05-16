@@ -33,4 +33,17 @@
         lorem ipsum dolor sit amet
         lorem ipsum dolor sit amet
     </string>
+    <string name="mmorpg">MMORPG</string>
+    <string name="shooter">Shooter</string>
+    <string name="moba">MOBA</string>
+    <string name="anime">Anime</string>
+    <string name="battle_royale">Battle-Royale</string>
+    <string name="strategy">Strategy</string>
+    <string name="fantasy">Fantasy</string>
+    <string name="sci_fi">Sci-Fi</string>
+    <string name="card_games">Card-Games</string>
+    <string name="racing">Racing</string>
+    <string name="fighting">Fighting</string>
+    <string name="social">Social</string>
+    <string name="sports">Sports</string>
 </resources>

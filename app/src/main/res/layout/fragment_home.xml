@@ -40,91 +40,91 @@
                 style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MMORPG" />
+                android:text="@string/mmorpg" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/shooterChip"
                 style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Shooter" />
+                android:text="@string/shooter" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/mobaChip"
                 style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MOBA" />
+                android:text="@string/moba" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/animeChip"
                 style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Anime" />
+                android:text="@string/anime" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/battleRoyaleChip"
                 style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Battle Royale" />
+                android:text="@string/battle_royale" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/breadChip"
                 style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Strategy" />
+                android:text="@string/strategy" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/fantasyChip"
                 style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fantasy" />
+                android:text="@string/fantasy" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/sciFiChip"
                 style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sci-Fi" />
+                android:text="@string/sci_fi" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/cardGamesChip"
                 style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Card Games" />
+                android:text="@string/card_games" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/racingChip"
                 style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Racing" />
+                android:text="@string/racing" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/fightingChip"
                 style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fighting" />
+                android:text="@string/fighting" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/socialChip"
                 style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Social" />
+                android:text="@string/social" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/sportsChip"
                 style="@style/CustomChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sports" />
+                android:text="@string/sports" />
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
 
