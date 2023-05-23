@@ -1,19 +1,18 @@
 package com.hamzaazman.kotlinfreetoplay.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.hamzaazman.kotlinfreetoplay.HorizontalItemDecoration
+import com.hamzaazman.kotlinfreetoplay.R
 import com.hamzaazman.kotlinfreetoplay.VerticalItemDecoration
+import com.hamzaazman.kotlinfreetoplay.capitalizeFirstLetter
 import com.hamzaazman.kotlinfreetoplay.common.viewBinding
 import com.hamzaazman.kotlinfreetoplay.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,7 +21,7 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(com.hamzaazman.kotlinfreetoplay.R.layout.fragment_home) {
+class HomeFragment : Fragment(R.layout.fragment_home) {
     private val binding by viewBinding(FragmentHomeBinding::bind)
     private val vm by viewModels<HomeViewModel>()
     private val homeAdapter by lazy { HomeAdapter() }
@@ -38,33 +37,50 @@ class HomeFragment : Fragment(com.hamzaazman.kotlinfreetoplay.R.layout.fragment_
     }
 
     private fun selectCategory() = with(binding) {
-        if (checkedCategory.isNullOrEmpty()) {
+        if (checkedCategory.isEmpty()) {
             vm.getAllGame()
         }
-        vm.getCategoryAndId.asLiveData().observe(viewLifecycleOwner) { categoryType ->
-            checkedCategory = categoryType.checkedCategory
+        vm.getCategoryAndId.observe(viewLifecycleOwner) { categoryType ->
+            clearChip.visibility =
+                if (categoryType.checkedCategory == "all") View.GONE else View.VISIBLE
+
+            checkedCategory = categoryType.checkedCategory.apply {
+                if (!this.contains("clear filter")) {
+                    toolbarTextView.text = this.capitalizeFirstLetter()
+                }
+            }
             checkedCategoryId = categoryType.checkedCategoryId
             updateChip(checkedCategoryId, categoryChipGroup)
 
         }
-
         categoryChipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
             checkedIds.forEach {
                 checkedCategory = group.findViewById<Chip>(it).text.toString().lowercase()
                 lifecycleScope.launch {
                     vm.saveCategoryAndId(category = checkedCategory, categoryId = it)
-                    vm.getGameByCategory(checkedCategory)
+                    if (!checkedCategory.contains("clear filter")) {
+                        vm.getGameByCategory(checkedCategory)
+                    }
                 }
+                clearChip.visibility = View.VISIBLE
+            }
+        }
+
+        clearChip.setOnClickListener {
+            clearChip.visibility = View.GONE
+            lifecycleScope.launch {
+                vm.clearCategoryFilter()
             }
         }
     }
+
 
     private fun updateChip(chipId: Int, chipGroup: ChipGroup) {
         if (chipId != 0) {
             try {
                 chipGroup.findViewById<Chip>(chipId).isChecked = true
             } catch (e: Exception) {
-                Log.d("RecipesBottomSheet", e.message.toString())
+                binding.gameError.text = e.message
             }
         }
     }
@@ -103,7 +119,7 @@ class HomeFragment : Fragment(com.hamzaazman.kotlinfreetoplay.R.layout.fragment_
 
                     is HomeUiState.Loading -> {
                         gameError.visibility = View.GONE
-                        gameRecycler.visibility = View.VISIBLE
+                        gameRecycler.visibility = View.GONE
                     }
                 }
             }

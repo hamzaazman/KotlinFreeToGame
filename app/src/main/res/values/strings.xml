@@ -46,4 +46,5 @@
     <string name="fighting">Fighting</string>
     <string name="social">Social</string>
     <string name="sports">Sports</string>
+    <string name="clear_filter">Clear Filter</string>
 </resources>

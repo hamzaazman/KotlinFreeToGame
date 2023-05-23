@@ -1,6 +1,7 @@
 package com.hamzaazman.kotlinfreetoplay.data.datastore
 
 import android.content.Context
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
@@ -15,6 +16,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 import javax.inject.Inject
@@ -57,6 +59,13 @@ class DataStoreRepositoryImpl @Inject constructor(
                 checkedCategoryId = checkedCategoryId
             )
         }
+
+    suspend fun clearCategory() = context.dataStore.edit { it.clear() }
+    suspend fun isCategoryDataStoreEmpty(): Boolean {
+        val categoryType = getCategoryAndId.first()
+        Log.d("VM", "selectCategory: $categoryType")
+        return categoryType.checkedCategory == "all" && categoryType.checkedCategoryId == 0
+    }
 
 }
 

@@ -10,5 +10,13 @@
 
     <color name="medium_dark">#272B30</color>
     <color name="primary_dark_blue">#007BFF</color>
-    <color name="light_gray">#D3d3d3</color>
+    <color name="light_gray">#D6D6D6</color>
+
+    <color name="dark_chip_background">#212121</color>
+    <color name="light_chip_text_color">#FFFFFF</color>
+
+    <color name="chip_icon_tint_color">#FFFFFF</color>
+    <color name="chip_text_color">#000000</color>
+
+    <color name="green">#0B8E27</color>
 </resources>

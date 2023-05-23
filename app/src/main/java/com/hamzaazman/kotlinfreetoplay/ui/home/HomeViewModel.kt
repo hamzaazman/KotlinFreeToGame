@@ -1,6 +1,7 @@
 package com.hamzaazman.kotlinfreetoplay.ui.home
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.hamzaazman.kotlinfreetoplay.common.NetworkResource
 import com.hamzaazman.kotlinfreetoplay.data.datastore.DataStoreRepositoryImpl
@@ -24,14 +25,15 @@ class HomeViewModel @Inject constructor(
     private val _gameList: MutableStateFlow<HomeUiState> = MutableStateFlow(HomeUiState.Loading)
     val gameList: StateFlow<HomeUiState> get() = _gameList.asStateFlow()
 
-    val getCategoryAndId = dataStoreRepository.getCategoryAndId
+    val getCategoryAndId = dataStoreRepository.getCategoryAndId.asLiveData()
+    suspend fun clearCategoryFilter() = dataStoreRepository.clearCategory()
 
     fun saveCategoryAndId(category: String, categoryId: Int) =
         viewModelScope.launch(Dispatchers.IO) {
             dataStoreRepository.saveCategoryAndId(category = category, categoryId = categoryId)
         }
 
-    fun getAllGame() = viewModelScope.launch {
+    fun getAllGame() = viewModelScope.launch(Dispatchers.IO) {
         gameRepository.getAllGame().onEach { response ->
             when (response) {
                 is NetworkResource.Loading -> {
