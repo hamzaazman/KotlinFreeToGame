@@ -70,6 +70,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             clearChip.visibility = View.GONE
             lifecycleScope.launch {
                 vm.clearCategoryFilter()
+                vm.getAllGame()
             }
         }
     }
@@ -106,6 +107,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     is HomeUiState.Success -> {
                         gameError.visibility = View.GONE
                         gameRecycler.visibility = View.VISIBLE
+                        shimmerViewContainer.apply {
+                            stopShimmer()
+                            visibility = View.GONE
+                        }
                         homeAdapter.submitList(state.data)
                     }
 
@@ -115,11 +120,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                             visibility = View.VISIBLE
                             text = state.message
                         }
+                        shimmerViewContainer.apply {
+                            stopShimmer()
+                            visibility = View.GONE
+                        }
                     }
 
                     is HomeUiState.Loading -> {
                         gameError.visibility = View.GONE
                         gameRecycler.visibility = View.GONE
+                        shimmerViewContainer.apply {
+                            startShimmer()
+                            visibility = View.VISIBLE
+                        }
                     }
                 }
             }

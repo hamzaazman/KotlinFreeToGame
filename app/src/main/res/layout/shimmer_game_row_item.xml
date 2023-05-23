@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_margin="10dp"
+    android:layout_height="100dp">
+
+    <View
+        android:id="@+id/gameImage"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/shimmer_image_shape"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Small" />
+
+    <View
+        android:id="@+id/gameTitle"
+        android:layout_width="0dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/light_gray"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/gameImage"
+        app:layout_constraintTop_toTopOf="@+id/gameImage"
+        tools:text="Warlander" />
+
+    <View
+        android:id="@+id/gameDescription"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/light_gray"
+        android:ellipsize="end"
+        android:maxLines="2"
+        app:layout_constraintEnd_toEndOf="@+id/gameTitle"
+        app:layout_constraintStart_toStartOf="@+id/gameTitle"
+        app:layout_constraintTop_toBottomOf="@+id/gameTitle"
+        tools:text="A hero-focused first-person team shooter from Blizzard Entertainment." />
+
+    <View
+        android:id="@+id/gameGenre"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:background="@color/light_gray"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+        android:textColor="@color/medium_dark"
+        app:layout_constraintBottom_toBottomOf="@+id/gameImage"
+        app:layout_constraintStart_toStartOf="@+id/gameDescription"
+        tools:text="MMORPG" />
+
+    <View
+        android:id="@+id/gameFree"
+        android:layout_width="36dp"
+        android:layout_height="18dp"
+        android:background="@color/light_gray"
+        android:text="Free"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/gameGenre"
+        app:layout_constraintEnd_toEndOf="@+id/gameDescription" />
+
+    <View
+        android:id="@+id/gamePlatform"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginEnd="12dp"
+        android:background="@color/light_gray"
+        android:scaleType="centerCrop"
+        android:src="@drawable/browser"
+        app:layout_constraintBottom_toBottomOf="@+id/gameFree"
+        app:layout_constraintEnd_toStartOf="@+id/gameFree"
+        app:layout_constraintTop_toTopOf="@+id/gameFree" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
