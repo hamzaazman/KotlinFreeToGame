@@ -10,7 +10,7 @@
 
     <color name="medium_dark">#272B30</color>
     <color name="primary_dark_blue">#007BFF</color>
-    <color name="light_gray">#D6D6D6</color>
+    <color name="light_gray">#DEDEDE</color>
 
     <color name="dark_chip_background">#212121</color>
     <color name="light_chip_text_color">#FFFFFF</color>
