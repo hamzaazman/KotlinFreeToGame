@@ -22,6 +22,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private val binding by viewBinding(FragmentDetailBinding::bind)
     private val vm by viewModels<DetailViewModel>()
     private val args: DetailFragmentArgs by navArgs()
+    private val reviewAdapter by lazy { ReviewAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,23 +48,25 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                     }
 
                     is DetailUiState.Success -> {
-                        response.data.let { it ->
+                        response.data?.let { data ->
                             Glide.with(requireContext())
-                                .load(it.thumbnail)
+                                .load(data.thumbnail)
                                 .placeholder(R.drawable.game_placeholder)
                                 .into(detailImageView)
 
-                            detailTitle.text = it.title
-                            detailGenre.text = it.genre
-                            detailPlatform.text = it.platform
-                            detailReleaseDate.text = it.releaseDate.extractYearFromDateString()
-                            detailDesc.text = it.description
+                            detailTitle.text = data.title
+                            detailGenre.text = data.genre
+                            detailPlatform.text = data.platform
+                            detailReleaseDate.text = data.releaseDate.extractYearFromDateString()
+                            detailDesc.text = data.description
 
-                            detailMinOS.text = it.minimumSystemRequirements.os
-                            detailMinProcessor.text = it.minimumSystemRequirements.processor
-                            detailMinMemory.text = it.minimumSystemRequirements.memory
-                            detailMinStorage.text = it.minimumSystemRequirements.storage
+                            detailMinOS.text = data.minimumSystemRequirements.os
+                            detailMinProcessor.text = data.minimumSystemRequirements.processor
+                            detailMinMemory.text = data.minimumSystemRequirements.memory
+                            detailMinStorage.text = data.minimumSystemRequirements.storage
 
+                            screenShootRecycler.adapter = reviewAdapter
+                            reviewAdapter.submitList(data.screenshots)
                         }
                     }
 
