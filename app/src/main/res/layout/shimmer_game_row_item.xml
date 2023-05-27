@@ -46,7 +46,7 @@
         tools:text="A hero-focused first-person team shooter from Blizzard Entertainment." />
 
     <View
-        android:id="@+id/gameGenre"
+        android:id="@+id/detailGenre"
         android:layout_width="70dp"
         android:layout_height="20dp"
         android:background="@color/light_gray"
@@ -65,7 +65,7 @@
         android:textColor="@color/white"
         android:textSize="12sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/gameGenre"
+        app:layout_constraintBottom_toBottomOf="@+id/detailGenre"
         app:layout_constraintEnd_toEndOf="@+id/gameDescription" />
 
     <View

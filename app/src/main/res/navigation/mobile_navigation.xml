@@ -9,17 +9,23 @@
         android:id="@+id/navigation_home"
         android:name="com.hamzaazman.kotlinfreetoplay.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
-
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.hamzaazman.kotlinfreetoplay.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/detailFragment"
+        android:name="com.hamzaazman.kotlinfreetoplay.ui.detail.DetailFragment"
+        android:label="@string/title_detail"
+        tools:layout="@layout/fragment_detail">
+        <action
+            android:id="@+id/action_detailFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+        <argument
+            android:name="gameId"
+            app:argType="integer" />
+    </fragment>
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.hamzaazman.kotlinfreetoplay.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+
 </navigation>

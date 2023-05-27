@@ -2,8 +2,9 @@ package com.hamzaazman.kotlinfreetoplay
 
 import android.graphics.Rect
 import android.view.View
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.Locale
 
 fun RecyclerView.addVerticalMarginDecoration(margin: Int) {
@@ -83,7 +84,17 @@ class HorizontalItemDecoration(private val margin: Int) : RecyclerView.ItemDecor
         }
     }
 }
+
 fun String.capitalizeFirstLetter(): String {
     return replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() }
 }
 
+fun String.extractYearFromDateString(): String? {
+    val date = try {
+        SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(this)
+    } catch (e: ParseException) {
+        e.printStackTrace()
+        return null
+    }
+    return SimpleDateFormat("yyyy", Locale.getDefault()).format(date)
+}
