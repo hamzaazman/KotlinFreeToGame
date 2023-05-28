@@ -38,3 +38,7 @@ jobs:
       with:
         name: app-debug
         path: app/build/outputs/apk/debug/app-debug.apk
+        
+    - name: Copy APK to releases folder
+      run: mv app/build/outputs/apk/release/app-release.apk releases/
+
