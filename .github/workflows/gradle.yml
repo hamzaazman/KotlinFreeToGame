@@ -32,7 +32,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Build APK
-      run: ./gradlew assembleDebug
+      run: ./gradlew bundleDebug
     - name: Upload APK artifact
       uses: actions/upload-artifact@v2
       with:
