@@ -21,17 +21,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    lint {
-        baseline = file("lint-baseline.xml")
-    }
-
-    lintOptions {
-        checkReleaseBuilds false
-    }
-
-    lintOptions {
-        abortOnError true
-    }
 
     buildTypes {
         release {
