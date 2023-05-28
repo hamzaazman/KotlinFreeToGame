@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import coil.load
 import com.hamzaazman.kotlinfreetoplay.R
 import com.hamzaazman.kotlinfreetoplay.data.dto.Screenshot
 import com.hamzaazman.kotlinfreetoplay.databinding.ReviewRowItemBinding
@@ -32,10 +32,10 @@ class ReviewAdapter : ListAdapter<Screenshot, ReviewAdapter.ViewHolder>(DiffCall
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(screenshot: Screenshot) = with(binding) {
-            Glide.with(reviewImageView.context)
-                .load(screenshot.image)
-                .placeholder(R.drawable.game_placeholder)
-                .into(reviewImageView)
+            reviewImageView.load(screenshot.image) {
+                crossfade(true)
+                placeholder(R.drawable.game_placeholder)
+            }
         }
     }
 

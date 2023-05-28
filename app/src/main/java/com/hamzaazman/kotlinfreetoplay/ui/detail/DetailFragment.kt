@@ -1,7 +1,6 @@
 package com.hamzaazman.kotlinfreetoplay.ui.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.widget.NestedScrollView
@@ -12,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
+import coil.load
 import com.hamzaazman.kotlinfreetoplay.R
 import com.hamzaazman.kotlinfreetoplay.common.viewBinding
 import com.hamzaazman.kotlinfreetoplay.databinding.FragmentDetailBinding
@@ -60,10 +59,10 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                     is DetailUiState.Success -> {
                         response.data.let { detailResult ->
 
-                            Glide.with(requireContext())
-                                .load(detailResult.thumbnail)
-                                .placeholder(R.drawable.game_placeholder)
-                                .into(detailImageView)
+                            detailImageView.load(detailResult.thumbnail) {
+                                crossfade(true)
+                                placeholder(R.drawable.game_placeholder)
+                            }
 
                             detailDesc.makeCollapsible(3, Int.MAX_VALUE)
 
