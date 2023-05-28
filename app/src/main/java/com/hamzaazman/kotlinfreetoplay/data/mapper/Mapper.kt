@@ -32,6 +32,5 @@ fun detailToDomain(detailDto: GameDetailDto): GameDetailUi {
         minimumSystemRequirements = detailDto.minimum_system_requirements,
         releaseDate = detailDto.release_date.orEmpty(),
         screenshots = detailDto.screenshots.orEmpty(),
-        shortDescription = detailDto.short_description.orEmpty()
     )
 }

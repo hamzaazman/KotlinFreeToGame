@@ -1,245 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
     tools:context=".ui.detail.DetailFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/detailAppbarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
-        <ImageView
-            android:id="@+id/detailImageView"
-            android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/backgrounds/scenic" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/gradient_image_shape"
-            app:layout_constraintBottom_toBottomOf="@+id/detailImageView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/detailTitle"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginTop="20dp"
-            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detailImageView"
-            tools:text="Call Of Duty: Warzone" />
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="false">
 
-        <TextView
-            android:id="@+id/detailGenre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/genre_shape"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-            android:textColor="@color/medium_dark"
-            app:layout_constraintStart_toStartOf="@+id/detailTitle"
-            app:layout_constraintTop_toBottomOf="@+id/detailTitle"
-            tools:text="MMORPG" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/detailToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="4dp"
+                android:theme="?attr/actionBarTheme"
+                app:navigationIcon="@drawable/ic_arrow_back"
+                app:title=""
+                app:titleTextColor="@color/black">
 
-        <TextView
-            android:id="@+id/detailPlatform"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:background="@drawable/genre_shape"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-            android:textColor="@color/medium_dark"
-            app:layout_constraintBottom_toBottomOf="@+id/detailGenre"
-            app:layout_constraintStart_toEndOf="@+id/detailGenre"
-            app:layout_constraintTop_toTopOf="@+id/detailGenre"
-            tools:text="Windows" />
+            </androidx.appcompat.widget.Toolbar>
 
-        <TextView
-            android:id="@+id/detailReleaseDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:background="@drawable/genre_shape"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-            android:textColor="@color/medium_dark"
-            app:layout_constraintBottom_toBottomOf="@+id/detailPlatform"
-            app:layout_constraintStart_toEndOf="@+id/detailPlatform"
-            app:layout_constraintTop_toTopOf="@+id/detailPlatform"
-            tools:text="2021" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-        <TextView
-            android:id="@+id/detailDesc"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginTop="12dp"
-            android:ellipsize="end"
-            android:maxLines="3"
-            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/detailGenre"
-            app:layout_constraintTop_toBottomOf="@+id/detailGenre"
-            tools:text="@string/desc_detail" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <!--SYSTEM REQUIREMENTS-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/systemReqLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:elevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detailDesc">
-
+            <ImageView
+                android:id="@+id/detailImageView"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:scaleType="centerCrop"
+                tools:src="@tools:sample/backgrounds/scenic" />
 
             <TextView
-                android:id="@+id/systemReqTitle"
+                android:id="@+id/detailTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:text="System Requirements"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/minTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="MINIMUM"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-                android:textSize="11sp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="@color/medium_dark"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/systemReqTitle"
-                app:layout_constraintTop_toBottomOf="@+id/systemReqTitle" />
+                tools:text="Call Of Duty: Warzone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/detailGenre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/genre_shape"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                    android:textColor="@color/medium_dark"
+                    tools:text="Shooter" />
+
+                <TextView
+                    android:id="@+id/detailPlatform"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/genre_shape"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                    android:textColor="@color/medium_dark"
+                    tools:text="Windows" />
+
+                <TextView
+                    android:id="@+id/detailReleaseDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/genre_shape"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                    android:textColor="@color/medium_dark"
+                    tools:text="2020-03-10" />
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/minOsTitle"
-                android:layout_width="wrap_content"
+                android:id="@+id/detailDesc"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="OS:"
-                app:layout_constraintStart_toStartOf="@+id/minTitle"
-                app:layout_constraintTop_toBottomOf="@+id/minTitle" />
-
-            <TextView
-                android:id="@+id/detailMinOS"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
+                android:clickable="true"
                 android:ellipsize="end"
-                android:maxLines="1"
-                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                app:layout_constraintBottom_toBottomOf="@+id/minOsTitle"
+                android:focusable="true"
+                android:maxLines="3"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                android:textColor="@color/medium_dark"
+                tools:text="A standalone free-to-play battle royale and modes accessible via Call of Duty: Modern Warfare." />
+
+            <LinearLayout
+                android:id="@+id/systemReqLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/systemReqTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:text="System Requirements"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/systemReqOS"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:text="Operating System: Windows 10"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+
+                    <TextView
+                        android:id="@+id/systemReqCPU"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:text="CPU: Intel Core i5-2500K or AMD Ryzen R5 1600X"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+
+                    <TextView
+                        android:id="@+id/systemReqRAM"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:text="RAM: 8GB"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+
+                    <TextView
+                        android:id="@+id/systemReqGraphics"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:text="Graphics: NVIDIA GeForce GTX 970 / GTX 1660, or AMD Radeon R9 390 / RX 580"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+
+                    <TextView
+                        android:id="@+id/systemReqStorage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="8dp"
+                        android:text="Storage: 175GB"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/screenshotTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:text="Screenshots"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:textColor="@color/medium_dark" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/screenshotRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:paddingHorizontal="8dp"
+                android:paddingBottom="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/minOsTitle"
-                app:layout_constraintTop_toTopOf="@+id/minOsTitle"
-                tools:text="Windows 7 64-Bit (SP1) or Windows 10 64-Bit" />
+                tools:listitem="@layout/review_row_item" />
 
-            <TextView
-                android:id="@+id/minProcessorTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Processor:"
-                app:layout_constraintStart_toStartOf="@+id/minOsTitle"
-                app:layout_constraintTop_toBottomOf="@+id/minOsTitle" />
-
-            <TextView
-                android:id="@+id/detailMinProcessor"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="8dp"
-                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                app:layout_constraintBottom_toBottomOf="@+id/minProcessorTitle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/minProcessorTitle"
-                app:layout_constraintTop_toTopOf="@+id/minProcessorTitle"
-                tools:text="Intel Core i3-4340 or AMD FX-6300" />
-
-            <TextView
-                android:id="@+id/minMemoryTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Memory:"
-                app:layout_constraintStart_toStartOf="@+id/minProcessorTitle"
-                app:layout_constraintTop_toBottomOf="@+id/minProcessorTitle" />
-
-            <TextView
-                android:id="@+id/detailMinMemory"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="8dp"
-                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                app:layout_constraintBottom_toBottomOf="@+id/minMemoryTitle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/minMemoryTitle"
-                app:layout_constraintTop_toTopOf="@+id/minMemoryTitle"
-                tools:text="8GB Ram" />
-
-            <TextView
-                android:id="@+id/minStorageTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Storage:"
-                app:layout_constraintStart_toStartOf="@+id/minMemoryTitle"
-                app:layout_constraintTop_toBottomOf="@+id/minMemoryTitle" />
-
-            <TextView
-                android:id="@+id/detailMinStorage"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="8dp"
-                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                app:layout_constraintBottom_toBottomOf="@+id/minStorageTitle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/minStorageTitle"
-                app:layout_constraintTop_toTopOf="@+id/minStorageTitle"
-                tools:text="175GB HD space" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/reviewsTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginTop="20dp"
-            android:text="Reviews"
-            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-            app:layout_constraintStart_toStartOf="@+id/systemReqLayout"
-            app:layout_constraintTop_toBottomOf="@+id/systemReqLayout" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/screenShootRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reviewsTextView" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

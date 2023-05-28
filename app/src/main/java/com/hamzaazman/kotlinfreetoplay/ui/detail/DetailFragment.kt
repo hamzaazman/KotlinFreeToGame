@@ -1,21 +1,26 @@
 package com.hamzaazman.kotlinfreetoplay.ui.detail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.hamzaazman.kotlinfreetoplay.R
 import com.hamzaazman.kotlinfreetoplay.common.viewBinding
 import com.hamzaazman.kotlinfreetoplay.databinding.FragmentDetailBinding
 import com.hamzaazman.kotlinfreetoplay.extractYearFromDateString
+import com.hamzaazman.kotlinfreetoplay.makeCollapsible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class DetailFragment : Fragment(R.layout.fragment_detail) {
@@ -23,6 +28,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private val vm by viewModels<DetailViewModel>()
     private val args: DetailFragmentArgs by navArgs()
     private val reviewAdapter by lazy { ReviewAdapter() }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,6 +40,10 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         }
 
         detailUiState()
+
+        binding.detailToolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
 
     }
 
@@ -48,25 +58,51 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                     }
 
                     is DetailUiState.Success -> {
-                        response.data?.let { data ->
+                        response.data.let { detailResult ->
+
                             Glide.with(requireContext())
-                                .load(data.thumbnail)
+                                .load(detailResult.thumbnail)
                                 .placeholder(R.drawable.game_placeholder)
                                 .into(detailImageView)
 
-                            detailTitle.text = data.title
-                            detailGenre.text = data.genre
-                            detailPlatform.text = data.platform
-                            detailReleaseDate.text = data.releaseDate.extractYearFromDateString()
-                            detailDesc.text = data.description
+                            detailDesc.makeCollapsible(3, Int.MAX_VALUE)
 
-                            detailMinOS.text = data.minimumSystemRequirements.os
-                            detailMinProcessor.text = data.minimumSystemRequirements.processor
-                            detailMinMemory.text = data.minimumSystemRequirements.memory
-                            detailMinStorage.text = data.minimumSystemRequirements.storage
+                            detailTitle.text = detailResult.title
+                            detailGenre.text = detailResult.genre
+                            detailPlatform.text = detailResult.platform
+                            detailReleaseDate.text =
+                                detailResult.releaseDate?.extractYearFromDateString()
+                            detailDesc.text = detailResult.description
 
-                            screenShootRecycler.adapter = reviewAdapter
-                            reviewAdapter.submitList(data.screenshots)
+                            if (detailResult.minimumSystemRequirements == null) {
+                                systemReqLayout.visibility = View.GONE
+                            }
+                            systemReqOS.text = detailResult.minimumSystemRequirements?.os
+                            systemReqCPU.text =
+                                detailResult.minimumSystemRequirements?.processor ?: ""
+                            systemReqRAM.text = detailResult.minimumSystemRequirements?.memory ?: ""
+                            systemReqStorage.text =
+                                detailResult.minimumSystemRequirements?.storage ?: ""
+                            systemReqGraphics.text =
+                                detailResult.minimumSystemRequirements?.graphics ?: ""
+
+                            screenshotRecyclerView.adapter = reviewAdapter
+                            reviewAdapter.submitList(detailResult.screenshots ?: emptyList())
+
+
+                            nestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, _ ->
+
+                                if (scrollY >= detailTitle.top + detailTitle.height) {
+                                    // Detay başlığı görünmüyorsa, toolbar başlığını ayarlayın
+
+                                    detailToolbar.title = detailTitle.text
+                                } else {
+                                    // Detay başlığı görünüyorsa, toolbar başlığını boş bırakın
+                                    detailToolbar.title = ""
+                                }
+                            })
+
+
                         }
                     }
 

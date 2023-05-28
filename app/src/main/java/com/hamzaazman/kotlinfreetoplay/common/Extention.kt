@@ -1,7 +1,10 @@
 package com.hamzaazman.kotlinfreetoplay
 
 import android.graphics.Rect
+import android.transition.TransitionManager
 import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -97,4 +100,17 @@ fun String.extractYearFromDateString(): String? {
         return null
     }
     return SimpleDateFormat("yyyy", Locale.getDefault()).format(date)
+}
+
+fun TextView.makeCollapsible(maxLinesCollapsed: Int, maxLinesExpanded: Int) {
+    maxLines = maxLinesCollapsed
+
+    setOnClickListener {
+        maxLines = if (maxLines == maxLinesCollapsed) {
+            maxLinesExpanded
+        } else {
+            maxLinesCollapsed
+        }
+        TransitionManager.beginDelayedTransition(parent as ViewGroup)
+    }
 }
