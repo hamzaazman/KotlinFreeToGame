@@ -12,6 +12,8 @@ on:
     branches: [ "feature-detail" ]
   pull_request:
     branches: [ "feature-detail" ]
+    tags:
+      - "*"
 
 permissions:
   contents: read
