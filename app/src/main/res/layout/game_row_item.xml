@@ -45,7 +45,7 @@
         android:id="@+id/gameGenre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/genre_shape"
+        android:background="@drawable/category_shape"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
         android:textColor="@color/medium_dark"
         app:layout_constraintBottom_toBottomOf="@+id/gameImage"

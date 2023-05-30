@@ -22,6 +22,7 @@
         <item name="android:textColor">@color/chip_unselect_state</item>
         <item name="chipBackgroundColor">@color/chip_select_state</item>
         <item name="chipStrokeColor">@color/light_gray</item>
+        <item name="chipStrokeWidth">1dp</item>
         <item name="chipMinHeight">28dp</item>
         <item name="chipCornerRadius">6dp</item>
         <item name="chipMinTouchTargetSize">48dp</item>
@@ -31,10 +32,12 @@
 
     <style name="clearChip" parent="Widget.MaterialComponents.Chip.Choice">
         <item name="chipIcon">@drawable/baseline_filter_list</item>
-        <item name="chipBackgroundColor">@color/light_gray</item>
+        <item name="chipBackgroundColor">@color/light_gray_alternative</item>
         <item name="android:textColor">@color/medium_dark</item>
         <item name="checkedIconTint">@color/medium_dark</item>
         <item name="chipMinHeight">28dp</item>
+        <item name="chipStrokeColor">@color/light_gray</item>
+        <item name="chipStrokeWidth">1dp</item>
         <item name="chipCornerRadius">14dp</item>
         <item name="chipMinTouchTargetSize">48dp</item>
         <item name="chipIconSize">24dp</item>

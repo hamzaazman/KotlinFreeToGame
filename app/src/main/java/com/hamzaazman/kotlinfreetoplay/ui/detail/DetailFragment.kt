@@ -50,15 +50,22 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         viewLifecycleOwner.lifecycleScope.launch {
             vm.detailData.collect { response ->
                 when (response) {
-                    is DetailUiState.Loading -> {}
+                    is DetailUiState.Loading -> {
+                        shimmerDetailContainer.startShimmer()
+                        shimmerDetailContainer.visibility = View.VISIBLE
+                    }
+
                     is DetailUiState.Error -> {
+                        shimmerDetailContainer.stopShimmer()
+                        shimmerDetailContainer.visibility = View.GONE
                         Toast.makeText(requireContext(), response.message, Toast.LENGTH_SHORT)
                             .show()
                     }
 
                     is DetailUiState.Success -> {
+                        shimmerDetailContainer.stopShimmer()
+                        shimmerDetailContainer.visibility = View.GONE
                         response.data.let { detailResult ->
-
                             detailImageView.load(detailResult.thumbnail) {
                                 crossfade(true)
                                 placeholder(R.drawable.game_placeholder)
@@ -74,7 +81,9 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                             detailDesc.text = detailResult.description
 
                             if (detailResult.minimumSystemRequirements == null) {
-                                systemReqLayout.visibility = View.GONE
+                                systemReqConstraintLayout.visibility = View.GONE
+                                viewLineAbout.visibility = View.GONE
+                                viewLineSystemReq.visibility = View.GONE
                             }
                             systemReqOS.text = detailResult.minimumSystemRequirements?.os
                             systemReqCPU.text =
@@ -88,6 +97,9 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                             screenshotRecyclerView.adapter = reviewAdapter
                             reviewAdapter.submitList(detailResult.screenshots ?: emptyList())
 
+                            if (detailResult.screenshots.isNullOrEmpty()) {
+                                screenshotTitle.visibility = View.GONE
+                            }
 
                             nestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, _ ->
 

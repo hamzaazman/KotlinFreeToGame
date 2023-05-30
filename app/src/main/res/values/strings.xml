@@ -47,4 +47,12 @@
     <string name="social">Social</string>
     <string name="sports">Sports</string>
     <string name="clear_filter">Clear Filter</string>
+    <string name="screenshots">Screenshots</string>
+    <string name="system_requirements">System Requirements</string>
+    <string name="os">OS:</string>
+    <string name="cpu">CPU:</string>
+    <string name="ram">RAM:</string>
+    <string name="storage">Storage:</string>
+    <string name="about">About</string>
+    <string name="graphic">Graphic:</string>
 </resources>
