@@ -1,7 +1,10 @@
 package com.hamzaazman.kotlinfreetoplay.ui.home
 
 import android.os.Bundle
+import android.transition.ChangeBounds
+import android.transition.TransitionManager
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -70,6 +73,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     }
                 }
                 clearChip.visibility = View.VISIBLE
+
+                val transition = ChangeBounds()
+                transition.duration = 200
+                TransitionManager.beginDelayedTransition(
+                    categoryChipGroup.parent as ViewGroup,
+                    transition
+                )
             }
         }
 
