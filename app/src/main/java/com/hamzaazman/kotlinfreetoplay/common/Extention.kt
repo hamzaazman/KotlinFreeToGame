@@ -4,6 +4,7 @@ import android.graphics.Rect
 import android.transition.TransitionManager
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import java.text.ParseException
@@ -102,13 +103,19 @@ fun String.extractYearFromDateString(): String? {
     return SimpleDateFormat("yyyy", Locale.getDefault()).format(date)
 }
 
-fun TextView.makeCollapsible(maxLinesCollapsed: Int, maxLinesExpanded: Int) {
+fun TextView.makeCollapsible(
+    maxLinesCollapsed: Int,
+    maxLinesExpanded: Int,
+    expandMoreDrawable: ImageView
+) {
     maxLines = maxLinesCollapsed
 
     setOnClickListener {
         maxLines = if (maxLines == maxLinesCollapsed) {
+            expandMoreDrawable.rotation = 180f
             maxLinesExpanded
         } else {
+            expandMoreDrawable.rotation = 0f
             maxLinesCollapsed
         }
         TransitionManager.beginDelayedTransition(parent as ViewGroup)

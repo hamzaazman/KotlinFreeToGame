@@ -515,24 +515,31 @@
                     android:focusable="true"
                     android:gravity="center_vertical"
                     android:maxLines="3"
-                    android:minHeight="48dp"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                    android:textColor="@color/medium_dark"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/aboutTitle"
                     tools:text="A standalone free-to-play battle royale and modes accessible via Call of Duty: Modern Warfare." />
+
+                <ImageView
+                    android:id="@+id/expandMoreDrawable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/expand_more"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/detailDesc" />
 
                 <View
                     android:id="@+id/viewLineAbout"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:background="@color/light_gray_alternative"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/detailDesc" />
+                    app:layout_constraintTop_toBottomOf="@+id/expandMoreDrawable" />
 
                 <!-- System Req Layout -->
                 <androidx.constraintlayout.widget.ConstraintLayout

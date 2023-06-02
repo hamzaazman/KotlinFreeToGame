@@ -71,7 +71,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                                 placeholder(R.drawable.game_placeholder)
                             }
 
-                            detailDesc.makeCollapsible(3, Int.MAX_VALUE)
+                            detailDesc.makeCollapsible(3, Int.MAX_VALUE, expandMoreDrawable)
 
                             detailTitle.text = detailResult.title
                             detailGenre.text = detailResult.genre
@@ -104,11 +104,8 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                             nestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, _ ->
 
                                 if (scrollY >= detailTitle.top + detailTitle.height) {
-                                    // Detay başlığı görünmüyorsa, toolbar başlığını ayarlayın
-
                                     detailToolbar.title = detailTitle.text
                                 } else {
-                                    // Detay başlığı görünüyorsa, toolbar başlığını boş bırakın
                                     detailToolbar.title = ""
                                 }
                             })
