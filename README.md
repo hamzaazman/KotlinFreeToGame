@@ -5,6 +5,7 @@
 [![Release](https://img.shields.io/github/v/release/hamzaazman/KotlinFreeToGame?color=52be80&label=Release)](https://github.com/hamzaazman/KotlinFreeToGame/releases)
 ![](https://img.shields.io/badge/Minimum%20SDK-24%20(Marshmallow)-839192?logo=android&logoColor=white)
 ![](https://img.shields.io/badge/Target%20SDK-33%20(Android%2013)-566573?logo=android&logoColor=white)
+![](https://img.shields.io/github/license/hamzaazman/KotlinFreeToGame?color=red&label=License)
 
 Kotlin Free To Game is an Android app that allows users to explore a variety of free-to-play games.The app utilizes the RAWG Video Games Database API to fetch the latest game data. It follows modern Android development practices, including MVVM architecture, Jetpack components.
 
