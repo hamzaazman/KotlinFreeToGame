@@ -17,6 +17,10 @@
 
     </style>
 
+    <style name="expandMoreDrawable">
+        <item name="srcCompat">@drawable/expand_more_dark</item>
+    </style>
+
     <style name="CustomChip" parent="Widget.MaterialComponents.Chip.Filter">
         <item name="checkedIconTint">@color/white</item>
         <item name="android:textColor">@color/chip_unselect_state</item>

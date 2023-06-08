@@ -18,6 +18,14 @@
         <item name="android:background">@color/medium_dark</item>
     </style>
 
+    <style name="expandMoreDrawable">
+        <item name="srcCompat">@drawable/expand_more_white</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
     <style name="CustomChip" parent="Widget.MaterialComponents.Chip.Filter">
         <item name="checkedIconTint">@color/white</item>
         <item name="android:textColor">@color/chip_unselect_state</item>
