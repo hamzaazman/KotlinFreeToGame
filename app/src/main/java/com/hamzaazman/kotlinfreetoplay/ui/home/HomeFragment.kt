@@ -53,7 +53,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         lifecycleScope.launch {
             vm.getCategoryAndId.collect { categoryType ->
                 clearChip.visibility =
-                    if (categoryType.checkedCategory == "home") View.GONE else View.VISIBLE
+                    if (categoryType.checkedCategoryId == 0) View.GONE else View.VISIBLE
 
                 checkedCategory = categoryType.checkedCategory.apply {
                     if (!this.contains("clear filter")) {
