@@ -1,13 +1,14 @@
 package com.hamzaazman.kotlinfreetoplay.ui.home
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.hamzaazman.kotlinfreetoplay.common.NetworkResource
+import com.hamzaazman.kotlinfreetoplay.data.datastore.CategoryType
 import com.hamzaazman.kotlinfreetoplay.data.datastore.DataStoreRepositoryImpl
 import com.hamzaazman.kotlinfreetoplay.data.repository.GameRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,7 +26,7 @@ class HomeViewModel @Inject constructor(
     private val _gameList: MutableStateFlow<HomeUiState> = MutableStateFlow(HomeUiState.Loading)
     val gameList: StateFlow<HomeUiState> get() = _gameList.asStateFlow()
 
-    val getCategoryAndId = dataStoreRepository.getCategoryAndId.asLiveData()
+    val getCategoryAndId: Flow<CategoryType> = dataStoreRepository.getCategoryAndId
     suspend fun clearCategoryFilter() = dataStoreRepository.clearCategory()
 
     fun saveCategoryAndId(category: String, categoryId: Int) =

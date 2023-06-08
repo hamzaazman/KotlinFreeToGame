@@ -50,18 +50,20 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         if (checkedCategory.isEmpty()) {
             vm.getAllGame()
         }
-        vm.getCategoryAndId.observe(viewLifecycleOwner) { categoryType ->
-            clearChip.visibility =
-                if (categoryType.checkedCategory == "all") View.GONE else View.VISIBLE
+        lifecycleScope.launch {
+            vm.getCategoryAndId.collect { categoryType ->
+                clearChip.visibility =
+                    if (categoryType.checkedCategory == "home") View.GONE else View.VISIBLE
 
-            checkedCategory = categoryType.checkedCategory.apply {
-                if (!this.contains("clear filter")) {
-                    toolbarTextView.text = this.capitalizeFirstLetter()
+                checkedCategory = categoryType.checkedCategory.apply {
+                    if (!this.contains("clear filter")) {
+                        toolbarTextView.text = this.capitalizeFirstLetter()
+                    }
                 }
+                checkedCategoryId = categoryType.checkedCategoryId
+                updateChip(checkedCategoryId, categoryChipGroup)
+                clearChip.visibility = if (checkedCategory == "home") View.GONE else View.VISIBLE
             }
-            checkedCategoryId = categoryType.checkedCategoryId
-            updateChip(checkedCategoryId, categoryChipGroup)
-
         }
         categoryChipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
             checkedIds.forEach {
@@ -72,7 +74,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                         vm.getGameByCategory(checkedCategory)
                     }
                 }
-                clearChip.visibility = View.VISIBLE
 
                 val transition = ChangeBounds()
                 transition.duration = 200
@@ -84,10 +85,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         clearChip.setOnClickListener {
-            clearChip.visibility = View.GONE
             lifecycleScope.launch {
                 vm.clearCategoryFilter()
                 vm.getAllGame()
+                clearChip.visibility = View.GONE
             }
         }
     }

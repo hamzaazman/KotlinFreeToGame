@@ -52,7 +52,7 @@ class DataStoreRepositoryImpl @Inject constructor(
             }
         }
         .map { preferences ->
-            val checkedCategory = preferences[PreferenceKeys.checkedCategory] ?: "all"
+            val checkedCategory = preferences[PreferenceKeys.checkedCategory] ?: "home"
             val checkedCategoryId = preferences[PreferenceKeys.checkedCategoryId] ?: 0
             CategoryType(
                 checkedCategory = checkedCategory,
